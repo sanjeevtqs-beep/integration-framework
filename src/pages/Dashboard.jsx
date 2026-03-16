@@ -78,6 +78,7 @@ export default function Dashboard() {
                     <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight leading-none">
                         Welcome, <span className="bg-gradient-to-br from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">QualitySync Pro</span>
                     </h1>
+                    <p className="text-slate-400 text-xl font-bold text-pink-500 mt-2">I love u aditya sir</p>
                     <p className="text-slate-500 mt-3 font-medium text-lg max-w-lg">
                         You have <span className="text-white underline decoration-indigo-500/50 decoration-2">{pending} active commitments</span> for today. Keep pushing!
                     </p>

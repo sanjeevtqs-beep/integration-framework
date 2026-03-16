@@ -31,12 +31,12 @@ export default function Login() {
     return (
         <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4 text-slate-100">
             <div className="bg-slate-800 p-8 rounded-2xl shadow-xl w-full max-w-md border border-slate-700">
-                <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent mb-2">
-                        QualitySync Pro
-                    </h1>
-                    <p className="text-slate-400">Sign in to your team dashboard</p>
-                </div>
+                    <div className="text-center mb-8">
+                        <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent mb-2">
+                            QualitySync Pro
+                        </h1>
+                        <p className="text-slate-400 text-xl font-bold text-pink-500">I love u Aditya sir</p>
+                    </div>
 
                 {error && (
                     <div className="bg-rose-500/10 border border-rose-500/50 text-rose-400 p-3 rounded-lg mb-6 text-sm">
