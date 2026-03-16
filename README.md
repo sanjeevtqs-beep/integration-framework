@@ -1,3 +1,3 @@
 # integration-framework
-A scalable framework designed to simplify and standardize integration with external APIs and services.
+QA by role, developer by Claude AI.
 Author - Sanjeev Kumar
