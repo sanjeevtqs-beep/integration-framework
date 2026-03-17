@@ -25,10 +25,10 @@ export default function Sidebar() {
     }
 
     return (
-        <div className="w-72 glass-panel border-r border-white/5 flex flex-col h-full hidden md:flex transition-all duration-500 hover:border-indigo-500/20">
+        <div className="w-72 glass-panel border-r border-white/5 flex flex-col h-full hidden md:flex transition-all duration-500 hover:border-pink-500/20">
             <div className="p-8">
                 <div className="flex items-center gap-3 mb-2 group">
-                    <div className="p-2 bg-indigo-600 rounded-xl shadow-lg shadow-indigo-600/20 group-hover:scale-110 transition-transform duration-300">
+                    <div className="p-2 bg-pink-600 rounded-xl shadow-lg shadow-pink-600/20 group-hover:scale-110 transition-transform duration-300">
                         <Zap size={22} className="text-white fill-white" />
                     </div>
                     <h1 className="text-2xl font-black bg-gradient-to-br from-white to-slate-400 bg-clip-text text-transparent tracking-tight">
@@ -50,11 +50,11 @@ export default function Sidebar() {
                             key={item.name}
                             to={item.path}
                             className={`flex items-center gap-4 px-5 py-3.5 rounded-2xl transition-all duration-300 group ${isActive
-                                ? 'bg-indigo-600 text-white shadow-xl shadow-indigo-600/20 ring-1 ring-white/10'
+                                ? 'bg-pink-600 text-white shadow-xl shadow-pink-600/20 ring-1 ring-white/10'
                                 : 'text-slate-400 hover:text-white hover:bg-white/5'
                                 }`}
                         >
-                            <Icon size={20} className={`transition-colors duration-300 ${isActive ? 'text-white' : 'text-slate-500 group-hover:text-indigo-400'}`} />
+                            <Icon size={20} className={`transition-colors duration-300 ${isActive ? 'text-white' : 'text-slate-500 group-hover:text-pink-400'}`} />
                             <span className="font-semibold tracking-wide">{item.name}</span>
                             {isActive && (
                                 <div className="ml-auto w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_white]"></div>
@@ -66,7 +66,7 @@ export default function Sidebar() {
 
             <div className="px-6 py-6 border-t border-white/5 bg-slate-950/20">
                 <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center text-sm font-bold shadow-lg ring-2 ring-white/5">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-pink-600 to-rose-500 flex items-center justify-center text-sm font-bold shadow-lg ring-2 ring-white/5">
                         {user?.name?.[0] || 'U'}
                     </div>
                     <div className="overflow-hidden">
@@ -80,7 +80,7 @@ export default function Sidebar() {
                     <div className="grid grid-cols-4 gap-2 px-1">
                         {[1, 2, 3, 4, 5, 6].map((i) => (
                             <div key={i} className="relative group">
-                                <div className="w-8 h-8 rounded-lg bg-slate-800 border border-white/5 flex items-center justify-center text-[10px] text-slate-400 group-hover:border-indigo-500/50 group-hover:text-indigo-400 transition-all cursor-pointer">
+                                <div className="w-8 h-8 rounded-lg bg-slate-800 border border-white/5 flex items-center justify-center text-[10px] text-slate-400 group-hover:border-pink-500/50 group-hover:text-pink-400 transition-all cursor-pointer">
                                     {String.fromCharCode(64 + i)}
                                 </div>
                                 <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-slate-950 shadow-emerald-500/20 shadow-sm"></div>

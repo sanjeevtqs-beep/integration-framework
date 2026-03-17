@@ -10,8 +10,8 @@ export default function Standup() {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (e, isDraft = false) => {
+        if (e) e.preventDefault();
         setLoading(true);
         setMessage('');
 
@@ -19,12 +19,17 @@ export default function Standup() {
             await api.post('/standup', {
                 yesterday_work: yesterday,
                 today_plan: today,
-                blockers
+                blockers,
+                is_draft: isDraft
             });
-            setMessage('Stand-up submitted successfully!');
-            setYesterday('');
-            setToday('');
-            setBlockers('');
+            if (isDraft) {
+                setMessage('Draft saved successfully! You can resume it later.');
+            } else {
+                setMessage('Stand-up submitted successfully!');
+                setYesterday('');
+                setToday('');
+                setBlockers('');
+            }
         } catch (err) {
             setMessage(err.response?.data?.message || 'Failed to submit stand-up');
         } finally {
@@ -35,9 +40,9 @@ export default function Standup() {
     return (
         <div className="p-8 max-w-4xl mx-auto">
             <header className="mb-12 relative">
-                <div className="absolute -top-10 -left-10 w-32 h-32 bg-indigo-600/10 blur-[60px] pointer-events-none"></div>
+                <div className="absolute -top-10 -left-10 w-32 h-32 bg-pink-600/10 blur-[60px] pointer-events-none"></div>
                 <div className="flex items-center gap-3 mb-3">
-                    <div className="p-2 bg-indigo-500/10 rounded-lg text-indigo-400">
+                    <div className="p-2 bg-pink-500/10 rounded-lg text-pink-400">
                         <Sparkles size={18} />
                     </div>
                     <span className="text-xs font-black uppercase tracking-[0.3em] text-slate-500">Daily Ritual</span>
@@ -57,20 +62,20 @@ export default function Standup() {
             )}
 
             <form onSubmit={handleSubmit} className="glass-card p-10 rounded-[2.5rem] relative overflow-hidden group">
-                <div className="absolute top-0 right-0 p-10 text-white/5 pointer-events-none group-hover:text-indigo-500/10 transition-colors duration-700">
+                <div className="absolute top-0 right-0 p-10 text-white/5 pointer-events-none group-hover:text-pink-500/10 transition-colors duration-700">
                     <Send size={120} />
                 </div>
 
                 <div className="space-y-8 relative">
                     <div className="space-y-3">
                         <label className="flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-[0.2em] ml-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-pink-500"></span>
                             Yesterday's Impact
                         </label>
                         <textarea
                             required
                             rows={3}
-                            className="input-field w-full group-hover:border-indigo-500/30 resize-none"
+                            className="input-field w-full group-hover:border-pink-500/30 resize-none"
                             placeholder="What did you conquer yesterday?"
                             value={yesterday}
                             onChange={(e) => setYesterday(e.target.value)}
@@ -107,27 +112,38 @@ export default function Standup() {
                     </div>
 
                     <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                        <Link to="/dashboard" className="text-xs font-bold text-slate-500 hover:text-indigo-400 transition-colors flex items-center gap-2">
+                        <Link to="/dashboard" className="text-xs font-bold text-slate-500 hover:text-pink-400 transition-colors flex items-center gap-2">
                             <LayoutDashboard size={14} />
                             BACK TO DASHBOARD
                         </Link>
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className="btn-primary !px-12 !py-4 w-full md:w-auto"
-                        >
-                            {loading ? (
-                                <>
-                                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                                    SENDING...
-                                </>
-                            ) : (
-                                <>
-                                    <Send size={18} />
-                                    SUBMIT MISSION
-                                </>
-                            )}
-                        </button>
+                        <div className="flex w-full md:w-auto gap-4">
+                            <button
+                                type="button"
+                                onClick={(e) => handleSubmit(e, true)}
+                                disabled={loading}
+                                className="px-6 py-4 rounded-2xl bg-slate-800 text-slate-300 font-black text-xs uppercase tracking-widest hover:bg-slate-700 hover:text-white transition-all w-full md:w-auto border border-slate-700"
+                            >
+                                SAVE DRAFT
+                            </button>
+                            <button
+                                type="submit"
+                                onClick={(e) => handleSubmit(e, false)}
+                                disabled={loading || !yesterday || !today}
+                                className="btn-primary !px-8 !py-4 w-full md:w-auto bg-gradient-to-r hover:from-pink-500 hover:to-fuchsia-400"
+                            >
+                                {loading ? (
+                                    <>
+                                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                                        SENDING...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Send size={16} />
+                                        SUBMIT MISSION
+                                    </>
+                                )}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </form>

@@ -15,7 +15,8 @@ export default function Tasks() {
         description: '',
         priority: 'Medium',
         due_date: new Date().toISOString().split('T')[0],
-        assigned_to: ''
+        assigned_to: '',
+        is_commitment: false
     });
 
     const fetchData = async () => {
@@ -56,7 +57,8 @@ export default function Tasks() {
                 description: '',
                 priority: 'Medium',
                 due_date: new Date().toISOString().split('T')[0],
-                assigned_to: ''
+                assigned_to: '',
+                is_commitment: false
             });
             fetchData();
         } catch (err) {
@@ -66,7 +68,7 @@ export default function Tasks() {
 
     if (loading) return (
         <div className="p-20 text-center flex flex-col items-center gap-4">
-            <div className="w-10 h-10 border-4 border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin"></div>
+            <div className="w-10 h-10 border-4 border-pink-500/20 border-t-pink-500 rounded-full animate-spin"></div>
             <p className="text-xs font-black text-slate-500 uppercase tracking-widest">Loading Galaxy...</p>
         </div>
     );
@@ -75,7 +77,7 @@ export default function Tasks() {
         <div className="p-8 max-w-7xl mx-auto">
             <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
                 <div>
-                    <div className="flex items-center gap-2 text-indigo-400 font-black text-[10px] uppercase tracking-[0.4em] mb-3">
+                    <div className="flex items-center gap-2 text-pink-400 font-black text-[10px] uppercase tracking-[0.4em] mb-3">
                         <Sparkles size={14} />
                         Team Mission Control
                     </div>
@@ -111,7 +113,7 @@ export default function Tasks() {
                         <p className="text-slate-500 mt-3 max-w-sm mx-auto font-medium">Ready to start something big? Create your first team task to begin tracking progress.</p>
                         <button
                             onClick={() => setShowModal(true)}
-                            className="mt-8 text-indigo-400 hover:text-indigo-300 font-black text-xs uppercase tracking-widest flex items-center gap-2 mx-auto transition-colors"
+                            className="mt-8 text-pink-400 hover:text-pink-300 font-black text-xs uppercase tracking-widest flex items-center gap-2 mx-auto transition-colors"
                         >
                             ADD FIRST TASK <Plus size={16} />
                         </button>
@@ -169,7 +171,7 @@ export default function Tasks() {
                                                 type="button"
                                                 onClick={() => setFormData({ ...formData, priority: p })}
                                                 className={`flex-1 py-3 rounded-xl text-xs font-black transition-all ${formData.priority === p
-                                                        ? 'bg-indigo-600 text-white shadow-lg'
+                                                        ? 'bg-pink-600 text-white shadow-lg'
                                                         : 'text-slate-500 hover:text-slate-300'
                                                     }`}
                                             >
@@ -205,6 +207,25 @@ export default function Tasks() {
                                         </option>
                                     ))}
                                 </select>
+                            </div>
+
+                            <div className="space-y-3">
+                                <label className="flex items-center gap-3 cursor-pointer group">
+                                    <div className="relative">
+                                        <input
+                                            type="checkbox"
+                                            className="sr-only"
+                                            checked={formData.is_commitment}
+                                            onChange={(e) => setFormData({ ...formData, is_commitment: e.target.checked })}
+                                        />
+                                        <div className={`w-10 h-6 bg-slate-800 rounded-full transition-colors ${formData.is_commitment ? 'bg-pink-600' : ''}`}></div>
+                                        <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${formData.is_commitment ? 'translate-x-4' : ''}`}></div>
+                                    </div>
+                                    <div>
+                                        <div className="text-[10px] font-black text-white uppercase tracking-[0.2em]">Mark as Commitment</div>
+                                        <div className="text-[10px] text-slate-500 font-medium tracking-wide">Tracked in Standups & Productivity Scores.</div>
+                                    </div>
+                                </label>
                             </div>
 
                             <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row gap-4">

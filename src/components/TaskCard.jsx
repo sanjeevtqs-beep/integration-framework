@@ -18,7 +18,7 @@ export default function TaskCard({ task, onStatusChange }) {
     const getStatusStyle = (status) => {
         switch (status) {
             case 'Completed': return 'text-emerald-400 bg-emerald-400/10 border-emerald-500/20';
-            case 'In Progress': return 'text-indigo-400 bg-indigo-400/10 border-indigo-500/20';
+            case 'In Progress': return 'text-pink-400 bg-pink-400/10 border-pink-500/20';
             default: return 'text-slate-400 bg-slate-800/20 border-white/5';
         }
     };
@@ -52,7 +52,7 @@ export default function TaskCard({ task, onStatusChange }) {
             {/* Background Glow */}
             <div className={`absolute -top-10 -right-10 w-32 h-32 blur-[50px] opacity-20 pointer-events-none transition-all duration-700 group-hover:opacity-40 ${
                 task.status === 'Completed' ? 'bg-emerald-500' :
-                task.status === 'In Progress' ? 'bg-indigo-500 animate-pulse' : 'bg-slate-500'
+                task.status === 'In Progress' ? 'bg-pink-500 animate-pulse' : 'bg-slate-500'
             }`} />
 
             {/* Priority + Status Badge */}
@@ -67,7 +67,7 @@ export default function TaskCard({ task, onStatusChange }) {
             </div>
 
             {/* Title + Description */}
-            <h3 className="text-lg font-bold text-white mb-2 leading-tight group-hover:text-indigo-300 transition-colors">
+            <h3 className="text-lg font-bold text-white mb-2 leading-tight group-hover:text-pink-300 transition-colors">
                 {task.title}
             </h3>
             <p className="text-sm mb-4 line-clamp-2 leading-relaxed font-medium text-slate-400">
@@ -87,7 +87,7 @@ export default function TaskCard({ task, onStatusChange }) {
                     value={task.status}
                     onChange={handleStatusSelect}
                     disabled={changing}
-                    className="w-full bg-slate-900 border border-white/10 text-slate-200 text-sm font-medium rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer disabled:opacity-50 transition-all"
+                    className="w-full bg-slate-900 border border-white/10 text-slate-200 text-sm font-medium rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-pink-500 cursor-pointer disabled:opacity-50 transition-all"
                 >
                     {STATUS_OPTIONS.map(s => (
                         <option key={s} value={s}>{s}</option>
@@ -100,7 +100,7 @@ export default function TaskCard({ task, onStatusChange }) {
                 <div>
                     <button
                         onClick={() => setShowLog(!showLog)}
-                        className="flex items-center gap-2 text-xs text-slate-400 hover:text-indigo-400 font-bold transition-colors w-full"
+                        className="flex items-center gap-2 text-xs text-slate-400 hover:text-pink-400 font-bold transition-colors w-full"
                     >
                         <History size={14} />
                         <span>Activity Log ({task.history.length})</span>
@@ -108,7 +108,7 @@ export default function TaskCard({ task, onStatusChange }) {
                     </button>
 
                     {showLog && (
-                        <div className="mt-3 space-y-2 border-l-2 border-indigo-500/30 pl-3">
+                        <div className="mt-3 space-y-2 border-l-2 border-pink-500/30 pl-3">
                             {task.history.map((entry, i) => (
                                 <div key={i} className="text-xs">
                                     <p className="text-slate-300 font-medium">{entry.update_text}</p>

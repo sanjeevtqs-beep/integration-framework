@@ -32,10 +32,10 @@ export default function Login() {
         <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4 text-slate-100">
             <div className="bg-slate-800 p-8 rounded-2xl shadow-xl w-full max-w-md border border-slate-700">
                     <div className="text-center mb-8">
-                        <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent mb-2">
+                        <h1 className="text-3xl font-bold bg-gradient-to-r from-pink-400 to-fuchsia-400 bg-clip-text text-transparent mb-2">
                             QualitySync Pro
                         </h1>
-                        <p className="text-slate-400 text-xl font-bold text-pink-500">I love u Aditya sir</p>
+                        <p className="text-slate-400 text-sm">Let's make today productive 🚀</p>
                     </div>
 
                 {error && (
@@ -46,12 +46,12 @@ export default function Login() {
 
                 <form onSubmit={handleLogin} className="space-y-6">
                     <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-2">Email Address</label>
+                        <label className="block text-sm font-medium text-slate-300 mb-2">Login ID</label>
                         <input
-                            type="email"
+                            type="text"
                             required
-                            className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-slate-500"
-                            placeholder="name@qualitysync.pro"
+                            className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-white placeholder-slate-500"
+                            placeholder="Enter your ID"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
@@ -62,7 +62,7 @@ export default function Login() {
                         <input
                             type="password"
                             required
-                            className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-slate-500"
+                            className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-white placeholder-slate-500"
                             placeholder="••••••••"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -72,7 +72,7 @@ export default function Login() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition-colors flex justify-center items-center gap-2 disabled:opacity-50"
+                        className="w-full bg-pink-600 hover:bg-pink-700 text-white font-medium py-3 px-4 rounded-lg transition-colors flex justify-center items-center gap-2 disabled:opacity-50"
                     >
                         {loading ? 'Signing in...' : 'Sign In'}
                     </button>
